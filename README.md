@@ -34,7 +34,7 @@ We are actively researching existing **IoT-based irrigation solutions**, studyin
 - **Data Analytics & Visualization** for long-term monitoring  
 
 ## 📜 References  
-(Include research papers and online resources you have studied.)  
+(Include research papers and online resources we have studied.)  
 
 ## 🤝 Contributing  
 If you’re interested in contributing, feel free to fork the repository and submit pull requests!  
