@@ -12,25 +12,23 @@ This project focuses on developing an **IoT-based Smart Irrigation System** that
 ## 🏗️ System Architecture  
 The system comprises:  
 - **Sensor Module**: Soil moisture, temperature, and humidity sensors.  
-- **Microcontroller**: Arduino, ESP8266, or Raspberry Pi for decision-making.  
+- **Microcontroller**: Arduino UNO for decision-making.  
 - **Water Pump Control**: Automatic activation based on soil conditions.  
 - **IoT & Communication**: Wi-Fi, GSM, or LoRa for remote access.  
-- **User Interface**: Mobile/web app for real-time monitoring.  
+
 
 ## 📖 Research & Development  
 We are actively researching existing **IoT-based irrigation solutions**, studying **academic papers**, and experimenting with different **hardware and software implementations** to develop an optimized system.  
 
 ## 🚀 Technologies Used  
-- **Microcontrollers**: Arduino, ESP8266, Raspberry Pi  
-- **Sensors**: Soil moisture, DHT11 (Temperature & Humidity)  
-- **Cloud & IoT**: Firebase, AWS IoT, Blynk, or MQTT  
-- **Communication Protocols**: Wi-Fi, GSM, LoRa  
-- **Programming**: C++, Python, Node.js  
+- **Microcontrollers**: Arduino
+- **Sensors**: Soil moisture, DHT11 (Temperature & Humidity)   
+- **Communication Protocols**: Wi-Fi
+- **Programming**: Python, Node.js, Arduino IDE 
 
 ## 📌 Future Enhancements  
 - **AI-based Predictive Irrigation** using weather forecasts  
-- **Integration with Renewable Energy** (Solar-powered)  
-- **Mobile App Development** for better user control  
+- **Integration with Renewable Energy** (Solar-powered)   
 - **Data Analytics & Visualization** for long-term monitoring  
 
 ## 📜 References  
