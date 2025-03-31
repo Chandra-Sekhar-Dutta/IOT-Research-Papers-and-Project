@@ -11,10 +11,10 @@ This project focuses on developing an **IoT-based Smart Irrigation System** that
 
 ## 🏗️ System Architecture  
 The system comprises:  
-- **Sensor Module**: Soil moisture, temperature, and humidity sensors.  
+- **Sensor Module**: Soil moisture.  
 - **Microcontroller**: Arduino UNO for decision-making.  
 - **Water Pump Control**: Automatic activation based on soil conditions.  
-- **IoT & Communication**: Wi-Fi, GSM, or LoRa for remote access.  
+- **IoT & Communication**: Connect Arduino to PC via USB.  
 
 
 ## 📖 Research & Development  
