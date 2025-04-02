@@ -16,7 +16,7 @@ def connect_to_database():
         db = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Chandra2011#",
+            password="", //your MySQL password
             database="sensor_data",
             autocommit=True
         )
