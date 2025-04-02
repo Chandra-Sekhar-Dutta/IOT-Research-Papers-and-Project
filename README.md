@@ -1,44 +1,76 @@
 # 🌱 IoT-Based Smart Irrigation System
 
 ## 📌 Project Overview  
-This project focuses on developing an **IoT-based Smart Irrigation System** that automates plant watering based on real-time soil moisture, temperature, and humidity data. By integrating **sensors, microcontrollers, and IoT connectivity**, the system optimizes water usage, reduces manual intervention, and enhances plant health.  
+This project implements an **IoT-based Smart Irrigation System** that automates plant watering using real-time soil moisture data. The system consists of an Arduino-based sensor module and a Python backend for data logging and visualization.
 
-## 🎯 Objectives  
-- **Efficient Water Management**: Reduce water wastage by irrigating based on soil moisture levels.  
-- **Automation**: Minimize manual effort using **microcontrollers and sensors**.  
-- **Remote Monitoring**: Enable users to track and control the system via a **mobile app or web interface**.  
-- **Scalability**: Suitable for home gardens, greenhouses, and large-scale agriculture.  
+## 🎯 Key Features  
+- **Real-time Soil Monitoring**: Measures moisture levels continuously.  
+- **Automated Watering**: Activates pump when soil is too dry.  
+- **Data Logging**: Stores sensor readings in a MySQL database.  
+- **Visualization**: Generates time-series graphs of moisture levels.  
 
 ## 🏗️ System Architecture  
-The system comprises:  
-- **Sensor Module**: Soil moisture.  
-- **Microcontroller**: Arduino UNO for decision-making.  
-- **Water Pump Control**: Automatic activation based on soil conditions.  
-- **IoT & Communication**: Connect Arduino to PC via USB.  
+**Arduino (Sensor & Pump Control) → Python (Data Processing) → MySQL (Storage) → Matplotlib (Visualization)**  
 
+## 📂 Project Files  
 
-## 📖 Research & Development  
-We are actively researching existing **IoT-based irrigation solutions**, studying **academic papers**, and experimenting with different **hardware and software implementations** to develop an optimized system.  
+### Arduino Sketch  
+- `Soil_Moisture_Testing.ino` - Controls moisture sensor and water pump  
 
-## 🚀 Technologies Used  
-- **Microcontrollers**: Arduino
-- **Sensors**: Soil moisture, DHT11 (Temperature & Humidity)   
-- **Communication Protocols**: Wi-Fi
-- **Programming**: Python, Node.js, Arduino IDE 
+### Python Scripts  
+- `arduino_to_mysql.py` - Handles:  
+  - Serial communication with Arduino  
+  - Data parsing and validation  
+  - MySQL database operations  
+- `graph.py` - Provides:  
+  - Data retrieval from MySQL  
+  - Interactive moisture level visualization  
 
-## 📌 Future Enhancements  
-- **AI-based Predictive Irrigation** using weather forecasts  
-- **Integration with Renewable Energy** (Solar-powered)   
-- **Data Analytics & Visualization** for long-term monitoring  
+## 🛠️ Installation  
 
-## 📜 References  
-(Include research papers and online resources we have studied.)  
+### Python Requirements  
+Install dependencies via pip:  
+```bash
+pip install pyserial mysql-connector-python matplotlib
+```
 
-## 🤝 Contributing  
-If you’re interested in contributing, feel free to fork the repository and submit pull requests!  
+### Database Setup  
+Create MySQL database:  
+```sql
+CREATE DATABASE sensor_data;
+USE sensor_data;
+CREATE TABLE moisture_log (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    moisture_value INT NOT NULL,
+    timestamp DATETIME NOT NULL
+);
+```
 
-## 📝 License  
-This project is open-source under the **MIT License**.  
+## 🔌 Hardware Setup  
+1. Connect soil moisture sensor to Arduino's **A0** pin.  
+2. Connect relay module to **pin 8**.  
+3. Connect Arduino via **USB** to a computer running Python scripts.  
 
----
-🔗 Stay tuned for updates as we continue our research and development!  
+## 🚀 Usage  
+
+1. Upload the Arduino sketch.  
+2. Run the data logger:  
+   ```bash
+   python arduino_to_mysql.py
+   ```
+3. Generate graphs:  
+   ```bash
+   python graph.py
+   ```
+
+## 📊 Data Flow  
+**Arduino → Serial Port → Python (Parser) → MySQL → Matplotlib**  
+
+## 🔮 Future Enhancements  
+- Web-based dashboard using Flask/Django  
+- Mobile notifications for dry soil conditions  
+- Multi-sensor support (temperature/humidity)  
+
+## 📜 License  
+**MIT License** - Open source for educational and personal use.  
+
