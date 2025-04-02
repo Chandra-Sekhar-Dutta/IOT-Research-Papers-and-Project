@@ -1,25 +1,41 @@
-#define MOISTURE_PIN A0  
+// Define the pins
+const int relayPin = 8;      // Relay control pin
+const int moisturePin = A0;  // Moisture sensor analog pin
+
+// Moisture threshold (adjust based on your sensor readings)
+const int dryThreshold = 500;  // Below this value = needs water
 
 void setup() {
-  Serial.begin(9600);  
+  // Initialize the relay pin as an output
+  pinMode(relayPin, OUTPUT);
+  digitalWrite(relayPin, HIGH);  // Start with pump off
+  
+  // Initialize serial communication
+  Serial.begin(9600);
+  Serial.println("Moisture-activated pump control ready");
 }
 
 void loop() {
-  int moistureValue = analogRead(MOISTURE_PIN);  
-  int correctedValue = 1023 - moistureValue; // Inverting the values
-
-  Serial.print("Corrected Moisture Level: ");
-  Serial.println(correctedValue);  
-
-  // Status Interpretation
-  if (correctedValue < 300) {
-    Serial.println("Status: Dry Soil 🌵");
-  } else if (correctedValue < 700) {
-    Serial.println("Status: Moist Soil 🌱");
-  } else {
-    Serial.println("Status: Wet Soil 💧");
+  // Read moisture level (0-1023)
+  int moistureValue = analogRead(moisturePin);
+  
+  Serial.print("Moisture: ");
+  Serial.print(moistureValue);
+  
+  // Check if soil is too dry
+  if (moistureValue > dryThreshold) {
+    digitalWrite(relayPin, LOW);  // Turn pump ON
+    Serial.println(" - Soil too dry, PUMP ON");
+    delay(1000);  // Water for 1 second (adjust as needed)
+    
+    // Turn pump off after watering
+    digitalWrite(relayPin, HIGH);
+    Serial.println("Pump OFF after watering");
   }
-
-  Serial.println("------------------------");
-  delay(1000);
+  else {
+    digitalWrite(relayPin, HIGH);  // Ensure pump is OFF
+    Serial.println(" - Soil moist enough");
+  }
+  
+  delay(1000);  // Wait 1 second between checks
 }
