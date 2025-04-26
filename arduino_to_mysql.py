@@ -16,7 +16,7 @@ def connect_to_database():
         db = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="", //your MySQL password
+            password="Chandra2011#",
             database="sensor_data",
             autocommit=True
         )
@@ -29,10 +29,12 @@ def connect_to_database():
 def parse_moisture_data(data):
     """Extract moisture value from serial data"""
     try:
-        # Look for patterns like "Moisture: 450" or "450 - Soil"
-        match = re.search(r'Moisture:\s*(\d+)|(\d+)\s*-\s*Soil', data)
+        # Match "Moisture: 983", "Moisture Value: 983", or just "983"
+        match = re.search(r'(?:Moisture(?:\s*Value)?):?\s*(\d+)', data)
         if match:
-            return int(match.group(1) if match.group(1) else match.group(2))
+            return int(match.group(1))
+        elif data.strip().isdigit():
+            return int(data.strip())
     except (ValueError, AttributeError):
         pass
     return None
@@ -63,7 +65,6 @@ def insert_reading(db, value):
         print(f"❌ Database error: {err}")
 
 def main():
-    # Initialize connections
     db = connect_to_database()
     if not db:
         return
@@ -108,7 +109,7 @@ def main():
                 print("⚠️ Received malformed data from Arduino")
             except Exception as err:
                 print(f"⚠️ Unexpected error: {err}")
-                time.sleep(5)  # Wait before retrying
+                time.sleep(5)
                 
     except KeyboardInterrupt:
         print("\n👋 Shutting down gracefully...")
