@@ -9,7 +9,7 @@ def connect_to_database():
         db = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="", //your MYSQL password
+            password="Chandra2011#",
             database="sensor_data"
         )
         print("✅ Connected to MySQL database")
